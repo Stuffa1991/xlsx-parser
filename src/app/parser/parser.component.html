@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 mt-5 d-flex justify-content-center">
+            <form>
+                <div class="form-group d-flex flex-column align-items-center">
+                    <label for="file">Choose File</label>
+                    <input type="file"
+                           id="file"
+                           multiple="false"
+                           accept=".csv,.xlsx"
+                           (change)="handleFileInput($event)">
+                </div>
+            </form>
+        </div>
+        <div class="col-12 mt-5 d-flex justify-content-center">
+            <div class="d-flex flex-column align-items-center" *ngIf="uploadedFile !== null">
+                <button type="button" class="btn btn-primary btn-lg" (click)="startParsing()" *ngIf="!parsed else reset">Start</button>
+                
+                <ng-template #reset>
+                    <button type="button" class="btn btn-primary btn-lg" (click)="resetFileUpload()">Reset</button>
+                </ng-template>
+            </div>
+        </div>
+        <div class="col-12 mt-5" *ngIf="parsed else notStarted">
+            <h1 class="parsedTable__title d-flex justify-content-center">
+                Parsed Tables
+            </h1>
+            <ng-container *ngFor="let parsedData of parsedFile; let i = index;">
+                <h1 class=parsedTable__header>
+                    Sheet #{{ i }}
+                </h1>
+                <div class="parsedTable__container">
+                    <div class="parsedTable__column" *ngFor="let sheet of parsedData.tableHeaders | keyvalue;">
+                        <div class="parsedTable__column-header">
+                            {{ sheet.value }}
+                        </div>
+                        <div class="parsedTable__column-value" *ngFor="let value of getData(i, sheet.key)">
+                            {{ value }}
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        <ng-template #notStarted>
+            File parsing not started
+        </ng-template>
+    </div>
+</div>
