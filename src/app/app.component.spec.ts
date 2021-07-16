@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'csv-parser'`, () => {
+  it(`should have as title 'xlsx-parser'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('csv-parser');
+    expect(app.title).toEqual('xlsx-parser');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('csv-parser app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('xlsx-parser app is running!');
   });
 });
