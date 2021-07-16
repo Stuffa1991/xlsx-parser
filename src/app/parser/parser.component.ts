@@ -18,6 +18,7 @@ export class ParserComponent implements OnInit {
   uploadedFile: UploadedFile = null;
   parsedFile: ParsedData[] = [];
   parsed: boolean = false;
+  activeTabIndex: number = 0;
 
   async handleFileInput(event: Event): Promise<void> {
     this.resetFileUpload();
@@ -56,9 +57,21 @@ export class ParserComponent implements OnInit {
     this.parsed = true;
   }
 
-  getData(index: number, property: string): any[] {
-    return this.parsedFile[index].data.map((sheetData: any) => {
+  getData(property: string): any[] {
+    return this.activeSheet.data.map((sheetData: any) => {
       return sheetData[property];
     });
+  }
+
+  setActiveTab(index: number) {
+    if (!this.parsedFile[index]) {
+      return;
+    }
+
+    this.activeTabIndex = index;
+  }
+
+  get activeSheet() {
+    return this.parsedFile[this.activeTabIndex];
   }
 }

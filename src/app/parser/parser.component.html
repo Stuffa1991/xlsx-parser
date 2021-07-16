@@ -22,24 +22,19 @@
             </div>
         </div>
         <div class="col-12 mt-5" *ngIf="parsed else notStarted">
-            <h1 class="parsedTable__title d-flex justify-content-center">
-                Parsed Tables
-            </h1>
-            <ng-container *ngFor="let parsedData of parsedFile; let i = index;">
-                <h1 class=parsedTable__header>
-                    Sheet #{{ i }}
-                </h1>
-                <div class="parsedTable__container">
-                    <div class="parsedTable__column" *ngFor="let sheet of parsedData.tableHeaders | keyvalue;">
-                        <div class="parsedTable__column-header">
-                            {{ sheet.value }}
-                        </div>
-                        <div class="parsedTable__column-value" *ngFor="let value of getData(i, sheet.key)">
-                            {{ value }}
-                        </div>
+            <div class="nav flex-row nav-pills justify-content-center" role="tablist">
+                <button [ngClass]="{ 'active': activeTabIndex === i }" class="nav-link" role="tab" *ngFor="let parsedData of parsedFile; let i = index;" (click)="setActiveTab(i)">Sheet #{{ i }}</button>
+            </div>
+            <div class="parsedTable__container" *ngIf="activeSheet">
+                <div class="parsedTable__column" *ngFor="let sheet of activeSheet.tableHeaders | keyvalue;">
+                    <div class="parsedTable__column-header">
+                        {{ sheet.value }}
+                    </div>
+                    <div class="parsedTable__column-value" *ngFor="let value of getData(sheet.key)">
+                        {{ value }}
                     </div>
                 </div>
-            </ng-container>
+            </div>
         </div>
         <ng-template #notStarted>
             File parsing not started
