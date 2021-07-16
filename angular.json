@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "csv-parser": {
+    "xlsx-parser": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/csv-parser",
+            "outputPath": "dist/xlsx-parser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "csv-parser:build:production"
+              "browserTarget": "xlsx-parser:build:production"
             },
             "development": {
-              "browserTarget": "csv-parser:build:development"
+              "browserTarget": "xlsx-parser:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "csv-parser:build"
+            "browserTarget": "xlsx-parser:build"
           }
         },
         "test": {
@@ -107,5 +107,5 @@
       }
     }
   },
-  "defaultProject": "csv-parser"
+  "defaultProject": "xlsx-parser"
 }
