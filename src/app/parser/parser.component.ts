@@ -58,7 +58,7 @@ export class ParserComponent implements OnInit {
   }
 
   getData(property: string): any[] {
-    return this.activeSheet.data.map((sheetData: any) => {
+    return this.activeSheet?.data.map((sheetData: any) => {
       return sheetData[property];
     });
   }
